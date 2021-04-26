@@ -1,4 +1,4 @@
-class PostRepositoryHelper
+class ReaderHelper
   def initialize(params = {})
     @file_name = params[:file_name]
     @class_name = params[:class_name]

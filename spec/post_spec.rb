@@ -1,27 +1,27 @@
-require_relative 'post_repository_helper'
+require_relative 'reader_helper'
 
 begin
   require 'post_factory'
 rescue  
 end
 
-post_repository_helper = PostRepositoryHelper.new(
+reader_helper = ReaderHelper.new(
   file_name: "post",
   class_name: "Post"
 )
 
-describe "Post", unless: post_repository_helper.file_and_class_valid? do
+describe "Post", unless: reader_helper.file_and_class_valid? do
   it '`post.rb` file should exist' do
-    expect(post_repository_helper.file_exists?).to be(true)
+    expect(reader_helper.file_exists?).to be(true)
   end
 
   it '`Post` class should be defined' do
-    expect(post_repository_helper.class_defined?).to be(true)
+    expect(reader_helper.class_defined?).to be(true)
   end
 end
 
 
-describe 'Post', if: post_repository_helper.file_and_class_valid? do
+describe 'Post', if: reader_helper.file_and_class_valid? do
   let(:post) { PostFactory.build("", "", "") }
 
   describe '#author' do
