@@ -42,10 +42,4 @@ describe 'Controller', if: reader_helper.file_and_class_valid? do
     expect(controller).to respond_to :create
     end
   end
-
-  describe '#destroy' do
-  it 'should return a method for removing posts' do
-    expect(controller).to respond_to :destroy
-    end
-  end
 end

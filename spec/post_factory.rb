@@ -4,16 +4,14 @@ rescue LoadError
 end
 
 class PostFactory
-  def self.build(author, title, content)
-    if Post.allocate.method(:initialize).arity == 3
-      Post.new(author, title, content)
-    else
+  def self.build(params = {})
       attributes = {
-        author: author,
-        title: title,
-        content: content
+        path: params[:path],
+        author: params[:author],
+        title: params[:title],
+        content: params[:content],
+        read: false
       }
       Post.new(attributes)
     end
-  end
 end

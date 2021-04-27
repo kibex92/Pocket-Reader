@@ -27,7 +27,7 @@ describe 'View', if: reader_helper.file_and_class_valid? do
   describe '#display' do
     it 'should display posts' do
       posts = []
-      posts << PostFactory.build('author', 'title', 'content')
+      posts << PostFactory.build(path: 'path', author: 'author', title: 'title', content: 'content', read: false)
       expect(STDOUT).to receive(:puts).with(/.*(title).*/)
       view.display(posts)
     end

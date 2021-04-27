@@ -35,10 +35,10 @@ end
 describe 'PostRepository', if: reader_helper.file_and_class_valid? do
   let(:posts) do
     [
-      ["Author A", "Nice Title", "Nice Title - Contenta"],
-      ["Author B", "Title", "Title - Content"],
-      ["Author C", "Another Title", "Another Title - Content"],
-      ["Author D", "Title 2", "Title 2 - Content"]
+      ["path", "Author A", "Nice Title", "Nice Title - Contenta"],
+      ["path1", "Author B", "Title", "Title - Content"],
+      ["path2", "Author C", "Another Title", "Another Title - Content"],
+      ["path3", "Author D", "Title 2", "Title 2 - Content"]
     ]
   end
 
@@ -62,7 +62,7 @@ describe 'PostRepository', if: reader_helper.file_and_class_valid? do
 
     describe '#all' do
       it 'should return all posts saved to @posts' do
-        @post_repository.instance_variable_set('@posts', [PostFactory.build("Author", "Title", "Content")])
+        @post_repository.instance_variable_set('@posts', [PostFactory.build(path: "somepath", author: "Author", title: "Title", content: "Content")])
         expect(@post_repository.all).to be_a(Array)
         expect(@post_repository.all.first).to be_a(Post)
       end
@@ -70,15 +70,15 @@ describe 'PostRepository', if: reader_helper.file_and_class_valid? do
 
     describe '#add_post' do
       it 'should add a post to the repo' do
-        size_before = @post_repository.all
-        @post_repository.add_post(PostFactory.build("Author", "Title", "Content"))
+        size_before = @post_repository.all.size
+        @post_repository.add_post(PostFactory.build(path: "somepath", author: "Author", title: "Title", content: "Content"))
         expect(@post_repository.all.size).to eq (size_before + 1)
       end
     end
 
     describe '#remove_post' do
       it 'should remove post from repo' do
-        @post_repository.instance_variable_set('@posts', [PostFactory.build("Author", "Title", "Content")])
+        @post_repository.instance_variable_set('@posts', [PostFactory.build(path: "somepath", author: "Author", title: "Title", content: "Content")])
         size_before = @post_repository.all.size
         @post_repository.remove_post(0)
         expect(@post_repository.all.size).to eq (size_before - 1)
@@ -114,7 +114,7 @@ describe 'PostRepository', if: reader_helper.file_and_class_valid? do
     describe '#add_post' do
       it 'should store post in the CSV' do
         size_before = @post_repository.all.size
-        @post_repository.add_post(PostFactory.build("Author", "Title", "Content"))
+        @post_repository.add_post(PostFactory.build(path: "somepath", author: "Author", title: "Title", content: "Content"))
 
         # CSV reload
         new_repo = PostRepository.new(csv_path)

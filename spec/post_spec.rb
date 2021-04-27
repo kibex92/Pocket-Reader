@@ -22,7 +22,13 @@ end
 
 
 describe 'Post', if: reader_helper.file_and_class_valid? do
-  let(:post) { PostFactory.build("", "", "") }
+  let(:post) { PostFactory.build(path: "", author: "", title: "", content: "") }
+
+  describe '#path' do
+    it 'should return the path of the post' do
+      expect(post).to respond_to :path
+    end
+  end
 
   describe '#author' do
     it 'should return the name of the author' do
@@ -44,7 +50,8 @@ describe 'Post', if: reader_helper.file_and_class_valid? do
 
   describe '#initialize' do
      it 'should create a post with a list of attributes' do
-      post = PostFactory.build("Boris", "Cool Dev", "Testing my tests")
+      post = PostFactory.build(path: "testpath/12jasdh",author: "Boris", title: "Cool Dev", content: "Testing my tests")
+      expect(post.path).to eq 'testpath/12jasdh'
       expect(post.author).to eq 'Boris'
       expect(post.title).to eq 'Cool Dev'
       expect(post.content).to eq 'Testing my tests'
