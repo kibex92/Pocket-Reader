@@ -1,10 +1,12 @@
 class Post
-  attr_reader :author, :title, :content, :done
+  attr_reader :path, :author, :title, :content
+  attr_accessor :read
 
   def initialize(params = {})
+    @path = params[:path]
     @author = params[:author]
     @title = params[:title]
     @content = params[:content]
-    @done = params[:done] || false
+    @read = params[:read] || false
   end
 end
