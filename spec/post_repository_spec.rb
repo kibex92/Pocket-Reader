@@ -75,15 +75,6 @@ describe 'PostRepository', if: reader_helper.file_and_class_valid? do
         expect(@post_repository.all.size).to eq (size_before + 1)
       end
     end
-
-    describe '#remove_post' do
-      it 'should remove post from repo' do
-        @post_repository.instance_variable_set('@posts', [PostFactory.build(path: "somepath", author: "Author", title: "Title", content: "Content")])
-        size_before = @post_repository.all.size
-        @post_repository.remove_post(0)
-        expect(@post_repository.all.size).to eq (size_before - 1)
-      end
-    end
   end
 
   describe 'with CSV' do
@@ -101,7 +92,7 @@ describe 'PostRepository', if: reader_helper.file_and_class_valid? do
 
     describe '#all' do
       it 'should give access to all posts' do
-        expect(@post_repository.all).to respond_to :all
+        expect(@post_repository).to respond_to :all
         expect(@post_repository.all).to be_a(Array)
       end
 
@@ -119,17 +110,6 @@ describe 'PostRepository', if: reader_helper.file_and_class_valid? do
         # CSV reload
         new_repo = PostRepository.new(csv_path)
         expect(new_repo.all.size).to eq (size_before + 1)
-      end
-    end
-
-    describe '#remove_post' do
-      it 'should remove post from CSV' do
-        size_before = @post_repository.all.size
-        @post_repository.remove_post(0)
-
-        # CSV reload
-        new_repo = PostRepository.new(csv_path)
-        expect(new_repo.all.size).to eq (size_before - 1)
       end
     end
   end

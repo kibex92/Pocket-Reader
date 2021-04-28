@@ -1,6 +1,6 @@
 require 'csv'
+
 class PostRepository
-  attr_accessor :posts
   def initialize(csv_path)
     @csv = csv_path
     @posts = []

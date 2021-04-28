@@ -1,4 +1,5 @@
-path,Author A,Nice Title,Nice Title - Contenta
-path1,Author B,Title,Title - Content
-path2,Author C,Another Title,Another Title - Content
-path3,Author D,Title 2,Title 2 - Content
+path,Author A,Nice Title,Nice Title - Contenta,false
+path1,Author B,Title,Title - Content,false
+path2,Author C,Another Title,Another Title - Content,false
+path3,Author D,Title 2,Title 2 - Content,false
+somepath,Author,Title,Content,false
