@@ -2,7 +2,7 @@ class View
   def display(posts)
     posts.each_with_index do |post, index|
       done = post.read ? "[x]" : "[ ]" 
-      puts  "#{done} - #{post.title} (#{post.author})" 
+      puts  "#{index + 1}. #{done} - #{post.title} (#{post.author})" 
     end
   end
 

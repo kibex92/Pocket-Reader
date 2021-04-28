@@ -30,8 +30,10 @@ class Controller
   end
 
   def mark_as_read
+    list
     index = @view.ask_for('Index')
     @post_repository.done!(index)
+    list
   end
 
   private
@@ -51,15 +53,19 @@ class Controller
   def scrape_page(path)
     begin
       html = URI.open("#{URL}#{path}")
-      
-    rescue
-      puts "404 Not found"
-      path = @view.ask_for("Another path")
+      Nokogiri::HTML(html)
+    rescue OpenURI::HTTPError => e
+      handle_error(e)
     end
-    Nokogiri::HTML(html)
   end
 
   def list
     @view.display(@post_repository.all)
+  end
+
+  def handle_error(e)
+    puts "404 Not found"
+    path = @view.ask_for("Another path")
+    scrape_page(path)
   end
 end
