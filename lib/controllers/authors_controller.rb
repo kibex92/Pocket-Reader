@@ -1,6 +1,6 @@
 require_relative '../repositories/author_repository'
 require_relative '../views/authors_view'
-require 'pry'
+
 class AuthorsController
   def initialize(author_repo)
     @author_repo = author_repo

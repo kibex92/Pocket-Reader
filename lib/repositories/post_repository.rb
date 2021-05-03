@@ -1,6 +1,6 @@
 require 'csv'
 require_relative '../models/post'
-require 'pry'
+
 class PostRepository
   def initialize(csv_path, author_repo)
     @csv = csv_path

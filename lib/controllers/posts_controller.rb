@@ -3,7 +3,6 @@ require_relative '../views/posts_view'
 require_relative '../services/reader_scraper'
 
 class PostsController
-  
   def initialize(post_repository, author_repository)
     @post_repository = post_repository
     @author_repository = author_repository
@@ -38,7 +37,6 @@ class PostsController
     @post_repository.done!(index)
     list
   end
-
 
   private
 

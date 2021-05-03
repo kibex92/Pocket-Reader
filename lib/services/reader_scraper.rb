@@ -1,8 +1,9 @@
 require 'open-uri'
 require 'nokogiri'
-require 'pry'
+
 class ReaderScraper
   attr_reader :post_path
+  
   URL = "https://dev.to/"
 
   def initialize(post_path)
@@ -10,11 +11,8 @@ class ReaderScraper
   end
 
   def call
-    
-
     post = scrape_post
     author = scrape_author
-
     { post: post, author: author }
   end
 
@@ -52,9 +50,7 @@ class ReaderScraper
     end
     params[:nickname] = nickname
     params[:posts_published] = info.find { |element| element.match?("Post") }.split.-(["Post"]).join(" ")
-
     params[:comments_written] = info.find { |element| element.match?("Comment") }.split.-(["Comment"]).join(" ")
-
     params[:name] = doc.search(".crayons-title").text.strip
     Author.new(params)
   end
