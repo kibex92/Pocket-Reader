@@ -58,7 +58,7 @@ class ReaderScraper
 
    def handle_error(e)
     puts "404 Not found"
-    path = @posts_view.ask_for("Another path")
+    @post_path = @posts_view.ask_for("Another path")
     scrape_page
   end
 end

@@ -1,5 +1,5 @@
 id,path,author_id,title,content,read
-1,seanpgallivan/solution-running-sum-of-1d-array-34na,1,Solution: Running Sum of 1d Array,"This is part of a series of Leetcode solution explanations (index). If you liked this solution or found it useful, please like this post and/or upvote my solution post on Leetcode's forums.
+1,1,1,Solution: Running Sum of 1d Array,"This is part of a series of Leetcode solution explanations (index). If you liked this solution or found it useful, please like this post and/or upvote my solution post on Leetcode's forums.
 
 (Jump to: Solution Idea || Code: JavaScript | Python | Java | C++)
 
@@ -23,4 +23,4 @@ When we're done, we can return ans.
 
 (Jump to: Problem Description || Solution Idea)
 
-(Jump to: Problem Description || Solution Idea)",true
+(Jump to: Problem Description || Solution Idea)",false
