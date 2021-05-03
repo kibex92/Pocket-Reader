@@ -16,4 +16,8 @@ class Author
     @posts << post
     post.author = self
   end
+
+  def unread_posts
+    @posts.select { |post| !post.read }
+  end  
 end

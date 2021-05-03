@@ -39,6 +39,7 @@ class PostsController
     list
   end
 
+
   private
 
   def list

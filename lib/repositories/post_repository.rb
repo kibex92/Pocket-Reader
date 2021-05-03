@@ -1,6 +1,6 @@
 require 'csv'
 require_relative '../models/post'
-
+require 'pry'
 class PostRepository
   def initialize(csv_path, author_repo)
     @csv = csv_path
@@ -40,7 +40,6 @@ class PostRepository
   def load_csv
     csv_options = { headers: :first_row, header_converters: :symbol }
     CSV.foreach(@csv, csv_options) do |row|
-      
       author = row[:author] = @author_repo.find(row[:author_id].to_i)
       row[:read] = row[:read] == 'true'
       row[:id] = row[:id].to_i

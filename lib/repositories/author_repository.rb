@@ -3,7 +3,6 @@ require_relative '../models/author'
 
 class AuthorRepository
   def initialize(csv_path)
-    
     @csv = csv_path
     @authors = []
     @next_id = @authors.empty? ? 1 : @authors.last.id + 1

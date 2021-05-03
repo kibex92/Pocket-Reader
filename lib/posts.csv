@@ -1,60 +1,4 @@
 id,path,author_id,title,content,read
-1,madza/what-do-you-do-on-less-productive-days-1j6,1,How do you deal with unproductive days?,"We all have unproductive days. For content creators, this state is often referred to as 'the writer's block' or 'the wall'.
-
-How do you fill up these days?
-Do you take the day off from content creation or coding (if possible) or do you still have some tasks you like to do?
-
-For example, I try to relax the mind as much as possible (usually longer activities outside, sports).",false
-1,boyum/use-depfu-and-mergify-to-automatically-merge-dependency-updates-1aid,1,Use depfu and Mergify to automatically merge dependency updates,"Over the years, I have accumulated quite a few free time projects that one after another become stale. Security alerts keep rolling in and getting all projects up-to-date is exhausting and might feel overwhelming. Let's automate this task!
-
-For some time, I have updated the projects manually, however this became way too time consuming. Enter depfu, a free (for open source projects) service that keeps your project's dependencies up-to-date by proposing pull requests (PRs) whenever there's a new dependency version. Renovate is a similar service, and would work the same for the purpose of this tutorial. Depfu has made my life much easier – it automatically creates PRs and the only job left for me is to approve and merge the PR. This is all well and good, however with many projects, even this process becomes tedious. Let's try to automate this task even further!
-
-Mergify can merge PRs automatically and lets us define rules for when that should happen. Together, depfu and Mergify can automatically keep our dependencies updated.
-
-Before we can start configuring these tools, we'll need to create one account in each service, and give the services the required permissions. Once this is done, depfu will start creating dependency update PRs in the projects that were added in the depfu GUI.
-
-We can configure Mergify in a .mergify.yml file placed in the root of our project. Mergify has a great deal of example configurations which is very helpful when new to the tool. This configuration is very powerful, however our task is quite simple and doesn't need much writing:
-
-That's actually all that we need! We ensure that it was actually depfu that created the PR, then check that the PR will be merged to the main branch. Now, every pull request created by depfu will be merged automatically.
-
-We should ask ourselves if we actually want dependency updates to be merged automatically. They should be subject to review and should perhaps not be merged into the codebase uncritically. This can be mitigated by adding automated tests and to run build scripts on every commit. If required checks fail, Mergify won't merge the PR. Also, Mergify has another trick up it's sleeve: We can do a RegEx search on the PR's title. This combines neatly with the fact that depfu adds a (major), (minor) or (patch) label to the end of the PR title. We can filter out major and minor updates, and our final Mergify config now looks like this:
-
-Oh, do they now? As said before, Mergify will wait until no required checks fail, and that includes required reviews. No problem! We can automate PR reviewal as well! I've found that Andrew Musgrave's automatic-pull-request-review GitHub Action works great. In our .github/workflows directory we create a new GitHub check. Let's call the file automatic-dependency-review.yml (you can call the file ✨whatever you want✨):
-
-The file now reads like this: For every pull request, check that depfu created it, then approve it.
-
-Now, with these new apps and actions, dependency update pull requests will be created, reviewed and merged 🌼automatically🌼! The GitHub Marketplace is filled with gems like these and I encourage you all to explore the list to make life easier and more automated!",false
-1,hendr_ik/automate-backing-up-your-docker-volumes-3gdk,1,Automate backing up your Docker volumes,"Docker is an ubiquitous tool for us while building Offen, a fair and open source web analytics software. It is foundational for our development setup, but we also use it for deploying our own Offen instance to production.
-
-One thing that we found missing was a simple and lightweight tool for taking and managing remote backups of Docker volumes. This is why we wrote our own tool called [offen/docker-volume-backup](https://github.com/offen/docker-volume-backup) which. In this post I'd like to introduce you to the tool and how to use it for automatically taking backups of the Docker volumes in your own setup.
-
-Volumes are Docker's way of managing persistent data. As Docker containers themselves are ephemeral, volumes can be mounted into the container's filesystem, enabling you to persist data beyond the lifecycle of a container. Volumes are commonly used for storing database data or similar.
-
-For example, this is how you would use a Docker volume to persist data for an Offen container:
-
-In the running container, data stored in /var/opt/offen will be persisted in the offen_data volume and can be reused in other containers.
-
-[offen/docker-volume-backup](https://github.com/offen/docker-volume-backup) is designed to run sidecared next to an application container and periodically take backups of volumes to any S3 compatible storage (i.e. AWS S3 itself or storages like MinIO or Ceph). It can run on any schedule you wish and it can also take care of rotating away old backups after a configured retention period.
-
-If needed, it can temporarily stop and restart your running containers to ensure backup integrity.
-
-Using alpine as the base image and using the MinIO client instead of AWS CLI for uploading files to the remote storage keeps the image small and lightweight.
-
-The easiest way of managing such a setup is using docker-compose. A compose file that backs up its volumes would look something like this:
-
-Of course, you can also use the image using plain Docker commands:
-
-Instead of running the backups on a regular schedule, you can also execute the command in a running container yourself:
-
-To recover from a backup, download and untar the backup file and copy its contents back into the docker volume using a one-off container created for just that purpose:
-
-The volume is now ready to use in other containers. Alternatively, you can use a one-off volume created beforehand.
-
-Detailed documentation and the source code is available at the GitHub repository and at Docker Hub. Source code is licensed under the Mozilla Public License 2.0.
-
-Knowing you have remote backups around in case of unexpected infrastructure glitches helps moving forward with confidence and not too much worry. I hope this article demonstrated that adding them to your Docker setup is only a matter of configuring an additional container, and helps you get going with your backups so you can move forward with your product.
-
-Written by Frederik Ring",false
 1,seanpgallivan/solution-running-sum-of-1d-array-34na,1,Solution: Running Sum of 1d Array,"This is part of a series of Leetcode solution explanations (index). If you liked this solution or found it useful, please like this post and/or upvote my solution post on Leetcode's forums.
 
 (Jump to: Solution Idea || Code: JavaScript | Python | Java | C++)
@@ -79,29 +23,4 @@ When we're done, we can return ans.
 
 (Jump to: Problem Description || Solution Idea)
 
-(Jump to: Problem Description || Solution Idea)",false
-1,seanpgallivan/solution-running-sum-of-1d-array-34na,,Solution: Running Sum of 1d Array,"This is part of a series of Leetcode solution explanations (index). If you liked this solution or found it useful, please like this post and/or upvote my solution post on Leetcode's forums.
-
-(Jump to: Solution Idea || Code: JavaScript | Python | Java | C++)
-
-Given an array nums. We define a running sum of an array as runningSum[i] = sum(nums[0]…nums[i]).
-
-Return the running sum of nums.
-
-(Jump to: Problem Description || Code: JavaScript | Python | Java | C++)
-
-While this is not a terribly challenging problem, it's a good introduction to the concept of a prefix sum array. Prefix sum arrays have many uses in more complex algorithms and can sometimes help reduce the time complexity of a advanced solution by an order of magnitude.
-
-In a prefix sum array, we will create a duplicate array which contains the running sum of the elements 0 to i of our original array (nums) for each index i of our prefix sum array (ans). (Note: We can lower the space complexity by using an in-place approach with nums directly and mutating it into its own prefix sum array, if there is no compelling reason to avoid modifying a function argument.)
-
-Since we'll need to build on a previous running total, we should start our iteration at i = 1 and copy over the first element from nums to ans. Then we just iterate through nums and add each element (nums[i]) to the previous running total (ans[i-1]) to create the new running total (ans[i]).
-
-When we're done, we can return ans.
-
-(Jump to: Problem Description || Solution Idea)
-
-(Jump to: Problem Description || Solution Idea)
-
-(Jump to: Problem Description || Solution Idea)
-
-(Jump to: Problem Description || Solution Idea)",false
+(Jump to: Problem Description || Solution Idea)",true

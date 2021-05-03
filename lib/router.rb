@@ -23,10 +23,10 @@ class Router
     when 2 then @posts_controller.create
     when 3 then @posts_controller.read
     when 4 then @posts_controller.mark_as_read
-    when 6 then @authors_controller.show
-    when 5 then @authors_controller
-    when 5 then @authors_controller
-    when 5 then @authors_controller
+    when 5 then @authors_controller.show
+    when 6 then @authors_controller.posts
+    when 7 then @authors_controller.info
+    when 8 then stop
     else
       puts "Please press a number from 1 to 5"
     end 
