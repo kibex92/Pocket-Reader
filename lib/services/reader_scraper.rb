@@ -3,11 +3,12 @@ require 'nokogiri'
 
 class ReaderScraper
   attr_reader :post_path
-  
+
   URL = "https://dev.to/"
 
   def initialize(post_path)
     @post_path = post_path
+    @posts_view = PostsView.new
   end
 
   def call
@@ -57,7 +58,7 @@ class ReaderScraper
 
    def handle_error(e)
     puts "404 Not found"
-    path = @view.ask_for("Another path")
-    scrape_page(path)
+    path = @posts_view.ask_for("Another path")
+    scrape_page
   end
 end
