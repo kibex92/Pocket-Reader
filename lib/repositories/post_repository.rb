@@ -1,7 +1,6 @@
 require 'csv'
-
 require_relative '../models/post'
-require 'pry'
+
 class PostRepository
   def initialize(csv_path, author_repo)
     @csv = csv_path
@@ -42,12 +41,12 @@ class PostRepository
     csv_options = { headers: :first_row, header_converters: :symbol }
     CSV.foreach(@csv, csv_options) do |row|
       
-      row[:author] = @author_repo.find(row[:author_id].to_i)
+      author = row[:author] = @author_repo.find(row[:author_id].to_i)
       row[:read] = row[:read] == 'true'
       row[:id] = row[:id].to_i
       post = Post.new(row)
       @posts << post
-      binding.pry
+      author.add_post(post)
     end
   end
 
@@ -55,7 +54,6 @@ class PostRepository
     CSV.open(@csv, 'wb') do |csv|
       csv << %w[id path author_id title content read]
       @posts.each do |post|
-
         csv << [post.id, post.path, post.author.id, post.title, post.content, post.read]
         end
     end

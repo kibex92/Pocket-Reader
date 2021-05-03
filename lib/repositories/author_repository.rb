@@ -1,6 +1,6 @@
 require 'csv'
-require 'pry'
 require_relative '../models/author'
+
 class AuthorRepository
   def initialize(csv_path)
     
@@ -33,7 +33,6 @@ class AuthorRepository
   def load_csv
     csv_options = { headers: :first_row, header_converters: :symbol }
     CSV.foreach(@csv, csv_options) do |row|
-      binding.pry
       row[:id] = row[:id].to_i
       @authors << Author.new(row)
     end
@@ -43,7 +42,6 @@ class AuthorRepository
     CSV.open(@csv, 'wb') do |csv|
       csv << %w[id nickname name description posts_published comments_written]
       @authors.each do |author|
-
         csv << [author.id, author.nickname, author.name, author.description, author.posts_published, author.comments_written]
       end
     end

@@ -1,5 +1,6 @@
 require 'open-uri'
 require 'nokogiri'
+require 'pry'
 class ReaderScraper
   attr_reader :post_path
   URL = "https://dev.to/"

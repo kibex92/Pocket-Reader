@@ -1,9 +1,7 @@
-require 'pry'
 class PostsView
   def display(posts)
     posts.each_with_index do |post, index|
       done = post.read ? "[x]" : "[ ]" 
-      binding.pry
       puts  "#{index + 1}. #{done} - #{post.title} (#{post.author.name})" 
     end
   end
